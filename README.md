@@ -64,7 +64,7 @@ A CPLD is used to switch between the Kickstart ROM on the Motherboard or the Fla
 Switching is performed by an active /RESET (CTRL-A-A) without interruption for longer than 1 second. Shorter /RESET durations will simply just reset the Amiga.
 After a POR (Power On Reset) the Flash EEPROMs on the CPU Relocator will be used by default.
 
-There is a standard JTAG connector (J4) for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
+There is a standard JTAG connector (J4) for programming the firmware to the Xilinx CPLD. The firmware can be found in the Logic section.
 
 
 ### Software
