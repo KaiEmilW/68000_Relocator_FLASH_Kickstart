@@ -1,33 +1,42 @@
-# 'Side Expansion Slot CPU Relocator' with Flash based Kickstart
-Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart (that was forked from https://github.com/AwesomeInferno/68000Relocator) and has been modified to work as a relocator on the 'Side Expansion Port' on the Amiga 500 (and potencially Amiga 1000).
+# Amiga 500 Side Expansion Slot CPU Relocator with Flash based Kickstart
+Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart and has been modified to work as a relocator on the 'Side Expansion Port' on the Amiga 500 (and potentially Amiga 1000).
 
 # Warning
-This design has not been compliance tested and will not be. It may cause damage to your A500. I take no responsibility for this. I accept no responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
+This design has not been compliance tested yet. It may cause damage to your A500.I will take no responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
 
 # Overview
-This relocator will allow to use a CPU slot accelerator on the Amiga 500's 'Side Expansion Port' while the original 68000 CPU and ROM is still inside the Amiga.
-The whole idea is to keep the Amiga 500 (and potencially Amiga 1000) in its original state. So should you want to go back to original Kickstart and CPU you'll just have to disconnect/remove the 'Side Expenasion Slot' relocator with accelerator, or holding down CTRL-A-A for more than 1 second to revert to motherboard Kickstart.
-An optional socket can be used if you want to use an original Kickstart ROM (or a 27C400 EPROM) instead of the Flash EEPROMs.
+This relocator will allow you to use a CPU slot accelerator, like the TF536, on your Amiga 500's 'Side Expansion Port' while the original 68000 CPU and Kickstart ROM are still inside the Amiga.
+The whole idea is to keep the Amiga 500 (and potentially Amiga 1000) in its complete and original state. So should you want to go back to original mode you'll just have to disconnect/remove the 'Side Expenasion Slot CPU Relocator' with accelerator, or by holding down CTRL-A-A for more than 1 second to revert to the motherboard Kickstart.
+An optional socket can be used if you want to use an original Kickstart ROM (or a 27C400 EPROM) instead of the Flash EEPROMs (not completely tested).
+
 
 ### Appearance
 3D model:
+
 ![3D Model](/Images/design.png)
+
 
 ### Pre-Requirements
 This design will work on all newer Amiga 500 models (Rev.6 and up) out-of-the-box.
 
 To get the Rev.5 to work, you'll have to modify it by soldering a wire from the "R103 via" to "Pin 7" on the 'Side Expansion Port' connector (see picture below).
+
 ![Solder Points Rev.5](/Images/solder_rev5.png)
 
 
+
+NB!!
 1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
+
 
 To program the Flash EEPROMs successfully, you'll need a valid Kickstart ROM. Either on the motherboard already or in software form.
 Software to inspect, dump, erase, program and save is provided in the Software section and looks like this:
+
 ![Flash Kickstart v1.0](/Images/flashkickstart.png)
 
 
-There is a standard JTAG connector for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
+There is a standard JTAG connector (J4) for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
+
 
 ### BOM
 For those wanting to build their own hardware, here is the BOM;
@@ -62,14 +71,17 @@ For those wanting to build their own hardware, here is the BOM;
 | U4           | XC9572VQ44     | Housings_QFP:TQFP-44_10x10mm_Pitch0.8mm                        |
 | U5           | LM1117-3.3     | TO_SOT_Packages_SMD:SOT-223-3_TabPin2                          |
 
+
 ### How It Works
 A CPLD is used to switch between the Kickstart ROM on the Motherboard or the Flash Kickstart on the 'Side Expansion Slot CPU Relocator' board.
 Switching is performed by an active /RESET (CTRL-A-A) without interruption for longer than 1 second. Shorter /RESET durations will simply just reset the Amiga.
 After a POR (Power On Reset) the Flash EEPROMs on the CPU Relocator will be used by default.
 
+
 ### Programming
 Programming the EEPROMs can be done by using the 'FK' or 'FlashKickstart' programs located in the Software section.
 With 'FlashKickstart' you'll type the path and filename of your Kickstart ROM and click 'Program'.
+
 ![Programming the Flash EEPROMs](/Images/program.png)
 
 
