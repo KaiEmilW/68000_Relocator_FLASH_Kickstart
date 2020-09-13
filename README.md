@@ -19,23 +19,15 @@ An optional socket can be used if you want to use an original Kickstart ROM (or 
 ### Pre-Requirements
 This design will work on all newer Amiga 500 models (Rev.6 and up) out-of-the-box.
 
-To get the Rev.5 to work, you'll have to modify it by soldering a wire from the "R103 via" to "Pin 7" on the 'Side Expansion Port' connector (see picture below).
+To get the Rev.5 to work, you'll have to modify it by soldering a wire from the "R103 via" to "Pin 7" on the 'Side Expansion Port' edge connector (see picture below).
 
 ![Solder Points Rev.5](/Images/solder_rev5.png)
 
 
 
-NB!!
+### !!! IMPORTANT NOTE !!!
 1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
 
-
-To program the Flash EEPROMs successfully, you'll need a valid Kickstart ROM. Either on the motherboard already or in software form.
-Software to inspect, dump, erase, program and save is provided in the Software section and looks like this:
-
-![Flash Kickstart v1.0](/Images/flashkickstart.png)
-
-
-There is a standard JTAG connector (J4) for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
 
 
 ### BOM
@@ -77,12 +69,23 @@ A CPLD is used to switch between the Kickstart ROM on the Motherboard or the Fla
 Switching is performed by an active /RESET (CTRL-A-A) without interruption for longer than 1 second. Shorter /RESET durations will simply just reset the Amiga.
 After a POR (Power On Reset) the Flash EEPROMs on the CPU Relocator will be used by default.
 
+There is a standard JTAG connector (J4) for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
 
-### Programming
+
+### Software
+To program the Flash EEPROMs successfully, you'll need a valid Kickstart ROM. Either on the motherboard already or in software form.
+Software to inspect, dump, erase, program and save is provided in the Software section and looks like this:
+
+![Flash Kickstart v1.0](/Images/flashkickstart.png)
+
+
+
+#### Programming
 Programming the EEPROMs can be done by using the 'FK' or 'FlashKickstart' programs located in the Software section.
 With 'FlashKickstart' you'll type the path and filename of your Kickstart ROM and click 'Program'.
 
 ![Programming the Flash EEPROMs](/Images/program.png)
+
 
 
 ### Known Issues And Pending Items
