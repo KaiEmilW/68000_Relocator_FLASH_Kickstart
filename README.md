@@ -25,11 +25,6 @@ To get the Rev.5 to work, you'll have to modify it by soldering a wire from the 
 
 
 
-### !!! IMPORTANT NOTE !!!
-1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
-
-
-
 ### BOM
 For those wanting to build their own hardware, here is the BOM;
 
@@ -86,6 +81,11 @@ With 'FlashKickstart' you'll type the path and filename of your Kickstart ROM an
 
 ![Programming the Flash EEPROMs](/Images/program.png)
 
+
+
+
+### !!! IMPORTANT NOTE !!!
+1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
 
 
 ### Known Issues And Pending Items
