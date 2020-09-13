@@ -92,4 +92,4 @@ This project is a work-in-progress:
 2. Support for ROMs based at address 0xF00000.
 3. When using Kickstart 1.2 or 1.3 ROMs you'll not be able to program the EEPROMs when using a TF5xx accelerator board.
 4. Programming the EEPROMs with Kickstart 1.2 or 1.3 may break compatibility. So use with caution!
-5. Flashing tool requires 1 MB "continous" RAM (512KB Chip and 512KB Slow will not work).
+5. Flashing tool requires 1MB "continuous" RAM (512KB Chip and 512KB Slow will not work). 1MB+ Chip or 1MB+ Slow
