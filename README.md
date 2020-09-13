@@ -85,7 +85,7 @@ With 'FlashKickstart' you'll type the path and filename of your Kickstart ROM an
 
 
 ### !!! IMPORTANT NOTE !!!
-1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
+1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize the accelerator board's memory).
 
 
 ### Known Issues And Pending Items
