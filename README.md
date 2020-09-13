@@ -1,5 +1,4 @@
-# Amiga 500 Side Expansion Slot CPU Relocator
-# with Flash based Kickstart
+# Amiga 500 Side Expansion Slot CPU Relocator with Flash based Kickstart
 Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart and has been modified to work as a relocator on the 'Side Expansion Port' on the Amiga 500 (and potentially Amiga 1000).
 
 # Warning
