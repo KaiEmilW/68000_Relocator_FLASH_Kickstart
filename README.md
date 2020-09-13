@@ -1,81 +1,83 @@
-# 68000 Relocator with FLASH based Kickstart
-Forked from https://github.com/AwesomeInferno/68000Relocator and modified to support FLASH Kickstart allowing programming in system.
+# 'Side Expansion Slot CPU Relocator' with FLASH based Kickstart
+Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart (that was forked from https://github.com/AwesomeInferno/68000Relocator) and has been modified to work as a relocator on the 'Side Expansion Port' on the Amiga 500 (and potencially Amiga 1000).
 
 # Warning
 This design has not been compliance tested and will not be. It may cause damage to your A500. I take no responsibility for this. I accept no responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
 
 # Overview
-To allow for Flash based Kickstart images to be mapped in the same address space as existing ROM based kickstarts without the need to remove the existing ROM. This design is targeting an accelerated A500(+) system which also require a CPU relocation.
+This relocator will allow to use a CPU slot accelerator on the Amiga 500's 'Side Expansion Port' while the original 68000 CPU and ROM is still inside the Amiga.
+The whole idea is to keep the Amiga 500 (and potencially Amiga 1000) in its original state. So should you want to go back to original Kickstart and CPU you'll just have to disconnect/remove the 'Side Expenasion Slot' relocator with accelerator, or holding down CTRL-A-A for more than 1 second to revert to motherboard Kickstart.
+An optional socket can be used if you want to use an original Kickstart ROM (or a 27C400 EPROM) instead of the Flash EEPROMs.
 
 ### Appearance
-Nice 3D model:
-![3D Model](/Images/68000RelocatorFLASHKickstart.png)
+3D model:
+![3D Model](/Images/design.png)
 
-... this is the final design.
+### Pre-Requirements
+This design will work on all newer Amiga 500 models (Rev.6 and up) out-of-the-box.
 
-### Prototype
-Drawing in from the experience and usefulness of my prototyping jig created for my Rev-1 Accelerator (https://github.com/PR77/A500_ACCEL_RAM_IDE-Rev-1), I decided to do the same for this hardware expansion.
+To get the Rev.5 to work, you'll have to modify it by soldering a wire from the "R103 via" to "Pin 7" on the 'Side Expansion Port' connector (see picture below).
+![Solder Points Rev.5](/Images/solder_rev5.png)
 
-So the prototype looks like this:
 
-![Jumpered PCB](/Images/PrototypeHardware.jpg)
+1 MB RAM is required to program the EEPROMs, so you might have to program it by using a Kickstart ROM 2.05 or higher on your motherboard (to ulilize your accelerator boards memory).
 
-To keep the prototype simple, instead of using Flash devices (AMD AM29F040B are my target has I have these and experience with the devices) I used simple SRAMs (also from my Accelerator). There was also the learning curve with using VBCC (http://eab.abime.net/showthread.php?t=83113) to develop the software to control the hardware, but with that sorted out I managed to finally get the prototype to work.
+To program the Flash EEPROMs successfully, you'll need a valid Kickstart ROM. Either on the motherboard already or in software form.
+Software to inspect, dump, erase, program and save is provided in the Software section and looks like this:
+![Flash Kickstart v1.0](/Images/flashkickstart.png)
 
-### Final Hardware
-Here is the final hardware loaded and installed with my Rev-2 Accelerator (https://github.com/PR77/A500_ACCEL_RAM_IDE-Rev-2). I was not able to easily source new AMD AM29F040B Flash devices so I changed over to SST39SF0x0A devices. They are JEDEC compliant so no issue with the pinout.
 
-![Final PCB](/Images/FinalHardware.jpg)
+There is a standard JTAG connector for programming the firmware to the Xilinx CPLD. The firmware can be found in the Firmware section.
 
 ### BOM
 For those wanting to build their own hardware, here is the BOM;
 
-| Reference(s) | Value      | Footprint                                                      |
-|--------------|------------|----------------------------------------------------------------|
-| C1           | 10uF       | Capacitors_Tantalum_SMD:CP_Tantalum_Case-B_EIA-3528-21_Hand    |
-| C2           | 10uF       | Capacitors_Tantalum_SMD:CP_Tantalum_Case-B_EIA-3528-21_Hand    |
-| C3           | 100nF      | Capacitors_SMD:C_0805_HandSoldering                            |
-| C4           | 100nF      | Capacitors_SMD:C_0805_HandSoldering                            |
-| C5           | 100nF      | Capacitors_SMD:C_0805_HandSoldering                            |
-| C6           | 100nF      | Capacitors_SMD:C_0805_HandSoldering                            |
-| J3           | BLOCK      | Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm               |
-| J4           | JTAG       | Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm               |
-| R1           | 10K        | Resistors_SMD:R_0805_HandSoldering                             |
-| R2           | 10K        | Resistors_SMD:R_0805_HandSoldering                             |
-| R3           | 10K        | Resistors_SMD:R_0805_HandSoldering                             |
-| U1           | 68000D     | Pin_Headers:Pin_Header_Straight_2x32_Pitch2.54mm               |
-| U2           | 68000D     | Housings_DIP:DIP-64_W22.86mm_Socket_LongPads                   |
-| U3           | SST39SF040 | Housings_DIP:DIP-32_W15.24mm_Socket                            |
-| U4           | SST39SF040 | Housings_DIP:DIP-32_W15.24mm_Socket                            |
-| U5           | XC9572VQ44 | Housings_QFP:TQFP-44_10x10mm_Pitch0.8mm                        |
-| U6           | LM1117-3.3 | TO_SOT_Packages_SMD:SOT-223-3_TabPin2                          |
-
-### In Operation
-My test Amiga 500 has a ROM Kickstart version 1.2, so the boot screen looks like this:
-
-![ROM Kickstart 1.2](/Images/Kickstart1.2.jpg)
-
-Then when loading into RAM Kickstart version 3.1 the software will make a simple dump of the RAM to the console to ensure it has been written correctly (data blurred to avoid any potential (C) issues). Essentially some basic debugging which looks like this:
-
-![Application Output](/Images/KickstartApplication.jpg)
-
-... so now, using the magic sequence, I have Kickstart version 3.1 as shown here:
-
-![ROM Kickstart 3.1](/Images/Kickstart3.1.jpg)
+| Reference(s) | Value          | Footprint                                                      |
+|--------------|----------------|----------------------------------------------------------------|
+| C1           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C2           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C3           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C4           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C5           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C6           | 100nF          | Capacitors_SMD:C_0805_HandSoldering                            |
+| C7           | 10uF           | Capacitors_SMD:C_1206_HandSoldering                            |
+| C8           | 10uF           | Capacitors_SMD:C_1206_HandSoldering                            |
+| J1           | Optional       | Pin_Headers:Pin_Header_Straight_1x10_Pitch2.54mm               |
+| J2           | Reset          | Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm               |
+| J3           | Block          | Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm               |
+| J4           | JTAG           | Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm               |
+| J5           | ROM SELECT     | Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm               |
+| P1           | Side Exp. Slot | Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm               |
+| R1           | 470            | Resistors_SMD:R_0805_HandSoldering                             |
+| R2           | 330            | Resistors_SMD:R_0805_HandSoldering                             |
+| R3           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
+| R4           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
+| R5           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
+| R6           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
+| R7           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
+| DIP64        | 68000D         | Housings_DIP:DIP-64_W22.86mm_Socket_LongPads                   |
+| U1           | AT27C400       | Housings_DIP:DIP-40_W15.24mm_Socket                            |
+| U2           | SST39SF040     | Housings_DIP:DIP-32_W15.24mm_Socket                            |
+| U3           | SST39SF040     | Housings_DIP:DIP-32_W15.24mm_Socket                            |
+| U4           | XC9572VQ44     | Housings_QFP:TQFP-44_10x10mm_Pitch0.8mm                        |
+| U5           | LM1117-3.3     | TO_SOT_Packages_SMD:SOT-223-3_TabPin2                          |
 
 ### How It Works
-In principle the operation is fairly simple. A CPLD is used to switch between the ROM Kickstart on the Motherboard or the Flash Kickstart on the CPU Relocator. Switching is performed by an active /RESET (CTRL-A-A) without interruption for longer than 1 second. Shorter /RESET durations will simply just reset the Amiga. After a POR (Power On Reset) by default the Flash Kickstart on the CPU Relocator will be used.
+A CPLD is used to switch between the Kickstart ROM on the Motherboard or the Flash Kickstart on the 'Side Expansion Slot CPU Relocator' board.
+Switching is performed by an active /RESET (CTRL-A-A) without interruption for longer than 1 second. Shorter /RESET durations will simply just reset the Amiga.
+After a POR (Power On Reset) the Flash EEPROMs on the CPU Relocator will be used by default.
 
-#### ROM based Kickstart
+### Programming
+Programming the EEPROMs can be done by using the 'FK' or 'FlashKickstart' programs located in the Software section.
+With 'FlashKickstart' you'll type the path and filename of your Kickstart ROM and click 'Program'.
+![Programming the Flash EEPROMs](/Images/program.png)
 
-#### FLASH based Kickstart
-
-#### Programming
 
 ### Known Issues And Pending Items
-As this design is still in-the-making, the following items are pending:
+This project is a work-in-progress:
 
-1. Identified an issue where programming the Flash when the application is executing out of FastRAM may lead to Bytes / Words not programming correctly. The program procedure can be executed again (without Erase first as the unprogrammed Bytes / Words remain as 0xFF / 0xFFFF) and the Flash programming will be OK. Will look into fixing this as I am not sure if there is a SW issue or CPLD issue in my Rev 2 Accelerator.
-2. Will update the software to not load the entire Kickstart content into RAM before programming; rather will load 64K chunks at a time.
-3. Develop a GUI for the software if no command line options are passed.
-4. Support for ROMs based at address 0xF00000.
+1. Will update the software to not load the entire Kickstart content into RAM before programming; rather will load 64K chunks at a time (might fix issue 5 as well).
+2. Support for ROMs based at address 0xF00000.
+3. When using Kickstart 1.2 or 1.3 ROMs you'll not be able to program the EEPROMs when using a TF5xx accelerator board.
+4. Programming the EEPROMs with Kickstart 1.2 or 1.3 may break compatibility. So use with caution!
+5. Flashing tool requires 1 MB "continous" RAM (512KB Chip and 512KB Slow will not work).
