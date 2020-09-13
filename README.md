@@ -2,7 +2,7 @@
 Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart and has been modified to work as a relocator on the 'Side Expansion Port' on the Amiga 500 (and potentially Amiga 1000).
 
 # Warning
-This design has not been compliance tested yet. It may cause damage to your A500.I will take no responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
+This design has not been compliance tested yet. It may cause damage to your A500. I will take no responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
 
 # Overview
 This relocator will allow you to use a CPU slot accelerator, like the TF536, on your Amiga 500's 'Side Expansion Port' while the original 68000 CPU and Kickstart ROM are still inside the Amiga.
