@@ -17,6 +17,11 @@ An optional socket can be utilized if you want to use an original Kickstart ROM 
 ![3D Model](/Images/design.png)
 
 
+IRL Rev.0:
+
+![Real Deal Rev.0](/Images/irl_rev0.png)
+
+
 
 ### Pre-Requirements
 This design will only work on a Rev.8A Amiga 500 (and A500+) out-of-the-box.
