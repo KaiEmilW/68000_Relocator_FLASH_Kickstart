@@ -20,6 +20,7 @@ An optional socket can be utilized if you want to use an original Kickstart ROM 
 
 ### Pre-Requirements
 This design will only work on a Rev.8A Amiga 500 (and A500+) out-of-the-box.
+
 To get the Rev.5 to work, you'll have to modify it by soldering a wire from the "R103 via" to "Pin 7" on the 'Side Expansion Port' edge connector (see picture below). This is to add the 7MHz signal to the edge connector which is standard on Rev.6 boards.
 
 ![Solder Points Rev.5](/Images/solder_rev5.png)
