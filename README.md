@@ -56,6 +56,7 @@ For those wanting to build their own hardware, here is the BOM;
 | J4           | JTAG           | Pin_Headers:Pin_Header_Straight_1x06_Pitch2.54mm               |
 | J5           | ROM SELECT     | Pin_Headers:Pin_Header_Straight_1x03_Pitch2.54mm               |
 | P1           | Side Exp. Slot | CONN EDGE DUAL FMALE 86POS 2.54mm                              |
+| D2           | 30mA LED       | LED <color of your choice> CLEAR 0805 SMD                      |
 | R1           | 470            | Resistors_SMD:R_0805_HandSoldering                             |
 | R2           | 330            | Resistors_SMD:R_0805_HandSoldering                             |
 | R3           | 10K            | Resistors_SMD:R_0805_HandSoldering                             |
