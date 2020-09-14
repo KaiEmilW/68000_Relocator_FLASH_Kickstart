@@ -28,6 +28,8 @@ To get the Rev.5 to work, you'll have to modify it by soldering a wire from the 
 
 To get the Rev.6 to work, you'll have to add a 0ohm or jumper wire on "JP6" (see picture below). This is to add the 7MHz signal to the edge connector which is standard on Rev.6 boards.
 
+![Solder Points Rev.5](/Images/solder_rev6.png)
+
 
 
 ### BOM
