@@ -38,7 +38,7 @@ To get the Rev.6 to work, you'll have to add a 0ohm or jumper wire on "JP6" (see
 
 To get the Amiga 1000 to work, you'll have to modify it by soldering a wire from a "7 MHz via" to "Pin 7" on the 'Side Expansion Port' edge connector (see picture below). This is to add the 7MHz signal to the edge connector which isn't standard on PAL A1000.
 
-![Solder Points Rev.5](/Images/solder_a1000.png)
+![Solder Points A1000](/Images/solder_a1000.png)
 
 
 ### BOM
