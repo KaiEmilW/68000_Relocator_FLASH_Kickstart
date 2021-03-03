@@ -1,13 +1,13 @@
 # A500 Side Expansion Slot CPU Relocator with Flash based Kickstart
-Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart and has been modified to work as a relocator for Amiga 500's 'Side Expansion Port' (and potentially Amiga 1000).
+Forked from https://github.com/PR77/68000_Relocator_FLASH_Kickstart and has been modified to work as a relocator for Amiga 500 and Amiga 1000 'Side Expansion Port' (it might also work on Amiga 2000's CPU slot with the correct adapter board).
 
 # Warning
-This design has not been completely tested yet. It may cause damage to your A500. I won't take any responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
+This design has not been completely tested yet. It may cause damage to your A500/A1000. I won't take any responsibility for any damage to any equipment that results from the use of this design and its components. IT IS ENTIRELY AT YOUR OWN RISK!
 
 # Overview
-This relocator will allow you to use a CPU-slotted accelerator, like the TF536, on your Amiga 500's 'Side Expansion Port' while the original 68000 CPU and Kickstart ROM still are socketed inside the Amiga.
-The whole idea is to keep the Amiga 500 (and potentially Amiga 1000) in its complete and original state. So should you want to revert back to original mode you'll just have to disconnect/remove the 'Side Expenasion Slot CPU Relocator' (with accelerator), or by holding down CTRL-A-A for more than 1 second to use the motherboard Kickstart.
-An optional socket can be utilized if you want to use an original Kickstart ROM (or a pre-programmed 27C400 EPROM) instead of the Flash EEPROMs (not tested).
+This relocator will allow you to use a CPU-slotted accelerator, like the TF536, on your A500/A1000 'Side Expansion Port' while the original 68000 CPU and Kickstart ROM still are socketed inside the Amiga.
+The whole idea is to keep the Amiga 500 and Amiga 1000 in its complete and original state. So should you want to revert back to original mode you'll just have to disconnect/remove the 'Side Expenasion Slot CPU Relocator' (with accelerator), or by holding down CTRL-A-A for more than 1 second to use the motherboard Kickstart.
+An optional socket can be utilized if you want to use an original Kickstart ROM (or a pre-programmed 27C400 EPROM) instead of the Flash EEPROMs (currently not working).
 
 
 
@@ -35,6 +35,10 @@ To get the Rev.6 to work, you'll have to add a 0ohm or jumper wire on "JP6" (see
 
 ![Solder Points Rev.5](/Images/solder_rev6.png)
 
+
+To get the Amiga 1000 to work, you'll have to modify it by soldering a wire from a "7 MHz via" to "Pin 7" on the 'Side Expansion Port' edge connector (see picture below). This is to add the 7MHz signal to the edge connector which isn't standard on PAL A1000.
+
+![Solder Points Rev.5](/Images/solder_a1000.png)
 
 
 ### BOM
